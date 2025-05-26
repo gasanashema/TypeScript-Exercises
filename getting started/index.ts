@@ -9,7 +9,8 @@ const secondInput = document.querySelector('#second-input') as HTMLInputElement
 export const screen = document.querySelector('.screen')
  
 function addNumbers(a: number,b: number) {
-     screen.innerHTML = a + b     
+     screen.innerHTML = (a + b).toString()
 }
  
-button.addEventListener('click', () => addNumbers(firstInput.value, secondInput.value))
+button.addEventListener('click', () => 
+    addNumbers(parseInt(firstInput.value), parseInt(secondInput.value)))
