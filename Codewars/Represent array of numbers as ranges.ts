@@ -25,10 +25,27 @@ If you're finding this Kata a little hard, then maybe try my other one first
 
 
  */
-export function toRange(arr: number[]): string {
-    return ''
+export function toRange(arr: number[]): any {
+  let arrNoDup = [...new Set(arr)].sort((a,b)=>a-b);
+    if(arrNoDup.length==1) return arrNoDup.join('');
+
+    let lowLimit = arrNoDup[0];
+    let ans:string[] = [];
+    
+    for (let i = 0; i < arrNoDup.length; i++) {
+      if(arrNoDup[i]+1 == arrNoDup[i+1]) {
+        continue;
+      }
+     lowLimit == arr[i]?ans.push(arr[i]+''):ans.push([lowLimit,arr[i]].join('_'));
+     lowLimit = arr[i+1];
+      
+    }
+    return ans;
   }
+  
+  console.log(toRange([1,2,3,2,6,7,3,46,3,4,0,8,1,2,3,5]))
   
   export function toArray(str: string): number[] {
     return []
   }
+    
