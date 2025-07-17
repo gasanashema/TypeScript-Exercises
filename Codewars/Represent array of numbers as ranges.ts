@@ -43,7 +43,7 @@ export function toRange(arr: number[]): any {
     return ans;
   }
   
-  console.log(toRange([1,2,3,2,6,7,3,46,3,4,0,8,1,2,3,5]))
+  console.log(toRange([1,2,3,2,6,7,3,46,3,4,0,8,1,2,3,5]));
   
   export function toArray(str: string): number[] {
     return []
