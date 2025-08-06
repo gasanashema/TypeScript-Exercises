@@ -49,10 +49,24 @@ export function toRange(arr: number[]): string {
   return ranges.join(',');
 }
   
-  console.log(toRange([1,2,3,2,6,7,3,46,3,4,0,8,1,2,3,5]));
+
   
   export function toArray(str: string): number[] {
-    
-    return []
+    if(str.trim().length == 0) return [];
+    const strArr:string[] = str.split(',');
+    const result:number[] = [];
+
+    for(let k = 0; k< strArr.length;k++){
+      if(!strArr[k].includes('_')){
+        result.push(Number(strArr[k]));
+        continue;
+      }
+
+      const subArr:string[] = strArr[k].split('_');
+      for(let x = +subArr[0];x<= +subArr[1];x++){
+        result.push(+x);
+      }
+    }
+    return result;
   }
     
