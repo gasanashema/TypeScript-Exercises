@@ -11,20 +11,23 @@ Examples
 [0, 0, 0, 0, 0] --> true // 0 nonzero elements at both ends
 [] --> false
  */
-export function isHollow(x:number[]): boolean {
-    if(x.length == 0) return false;
-    if(x.every(d=>d==0)) return true;
-    let firstIndex = x.indexOf(0);
-    let lastIndex = x.lastIndexOf(0);
-    if(firstIndex-((x.length+1)-lastIndex)!=0) return false
-    let left:[] = [];
-    let right:[] = [];
-    if(x.length%2==0){
-        left = x.slice(0,(x.length/2)-1);
-        right = x.slice((x.length/2),x.length-1)
-    }else{
-        left = x.slice(0,((x.lenght-1)/2)-1);
-        right =x.slice((x.length+1)/2,x.length-1)
-    }
+export function isHollow(arr: number[]): boolean {
+    const firstZero = arr.indexOf(0);
+    const lastZero = arr.lastIndexOf(0);
+
+    if (lastZero - firstZero + 1 < 3) return false;
+
+    const left = arr.slice(0, firstZero);
+ 
+    const middle = arr.slice(firstZero, lastZero + 1);
+ 
+    const right = arr.slice(lastZero + 1);
+
+    if (!middle.every(n => n === 0)) return false;
+
+    return left.length === right.length 
+        && left.every(n => n !== 0) 
+        && right.every(n => n !== 0);
 }
-console.log(isHollow([2, 3, 0, 0, 0, 5, 6] ))
+
+console.log(isHollow([2, 3, 0, 0, 0, 5, 6]))
